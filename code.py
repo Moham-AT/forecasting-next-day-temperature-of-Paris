@@ -31,8 +31,8 @@ raw['ob6'] = [i for i in dew_temp]
 
 values = raw.values
 values = values.astype('float32')
-def ss
-def series_to_supervised(data, n_in=1, n_out=1, dropnan=True):
+#define a function to change the data format from series to supervised-type
+def change_format(data, n_in=1, n_out=1, dropnan=True):
     n_vars = 1 if type(data) is list else data.shape[1]
     df = DataFrame(data)
     cols, names = list(), list()
@@ -55,7 +55,7 @@ def series_to_supervised(data, n_in=1, n_out=1, dropnan=True):
         agg.dropna(inplace=True)
     return agg
 
-reframe = series_to_supervised(values, 5, 1)
+reframe = change_format(values, 5, 1)
 reframe.drop(reframe.columns[31:36], axis=1, inplace=True)
 
 values = reframe.values
