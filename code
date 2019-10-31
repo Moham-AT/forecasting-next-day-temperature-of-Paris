@@ -7,7 +7,7 @@ from keras import layers
 import tensorflow as tf
 import matplotlib.pyplot as plt
 from numpy import concatenate
-# import math
+
 
 
 
@@ -20,7 +20,6 @@ max_temp=df['T2M_MAX']
 dew_temp=df['T2MDEW']
 all_sky_insolation=['ALLSKY_SFC_SW_DWN']
 
-# print(thermal_infrared.shape)
 
 raw=DataFrame()
 raw['ob1'] = [i for i in temperature]
@@ -29,7 +28,6 @@ raw['ob3'] = [i for i in pressure]
 raw['ob4'] = [i for i in min_temp]
 raw['ob5'] = [i for i in max_temp]
 raw['ob6'] = [i for i in dew_temp]
-# raw['ob7'] = [i for i in all_sky_insolation]
 
 values = raw.values
 values = values.astype('float32')
@@ -59,7 +57,6 @@ def series_to_supervised(data, n_in=1, n_out=1, dropnan=True):
 
 reframe = series_to_supervised(values, 5, 1)
 reframe.drop(reframe.columns[31:36], axis=1, inplace=True)
-# print(reframe)
 
 values = reframe.values
 scaler = MinMaxScaler(feature_range=(0, 1))
